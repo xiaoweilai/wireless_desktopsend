@@ -17,13 +17,13 @@ CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -frtti -Wall -Wextra -fexce
 INCPATH       = -I. -I"..\..\Qt5.2.0\5.2.0\mingw48_32\include" -I"..\..\Qt5.2.0\5.2.0\mingw48_32\include\QtWidgets" -I"..\..\Qt5.2.0\5.2.0\mingw48_32\include\QtGui" -I"..\..\Qt5.2.0\5.2.0\mingw48_32\include\QtCore" -I"release" -I"." -I"..\..\Qt5.2.0\5.2.0\mingw48_32\mkspecs\win32-g++"
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lglu32 -lopengl32 -lgdi32 -luser32 -lmingw32 -lqtmain -LD:\Qt\Qt5.2.0\5.2.0\mingw48_32\lib -lQt5Widgets -lQt5Gui -lQt5Core 
+LIBS        =        -lglu32 -lopengl32 -lgdi32 -luser32 -lmingw32 -lqtmain -LD:\Qt\Qt5.2.0\5.2.0\mingw48_32\lib -lQt5Widgets -lQt5Gui -lQt5Core release\logo_res.o 
 QMAKE         = D:\Qt\Qt5.2.0\5.2.0\mingw48_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\logo_res.o
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = $(COPY)
@@ -76,8 +76,11 @@ DESTDIR_TARGET = release\GetDesk.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) release/logo_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
+
+release/logo_res.o: logo.rc
+	windres -i logo.rc -o release\logo_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ -o Makefile.Release GetDesk.pro
@@ -89,6 +92,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.o release\mainwindow.o release\moc_mainwindow.o
+	-$(DEL_FILE) release\logo_res.o
 
 distclean: clean
 	-$(DEL_FILE) $(DESTDIR_TARGET)
