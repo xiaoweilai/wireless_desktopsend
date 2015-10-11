@@ -165,6 +165,7 @@ Makefile: GetDesk.pro ../../Qt5.2.0/5.2.0/mingw48_32/mkspecs/win32-g++/qmake.con
 		../../Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/lex.prf \
 		GetDesk.pro \
 		D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Widgets.prl \
+		D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Network.prl \
 		D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Gui.prl \
 		D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ -o Makefile GetDesk.pro
@@ -274,6 +275,7 @@ Makefile: GetDesk.pro ../../Qt5.2.0/5.2.0/mingw48_32/mkspecs/win32-g++/qmake.con
 ..\..\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\lex.prf:
 GetDesk.pro:
 D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Widgets.prl:
+D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Network.prl:
 D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Gui.prl:
 D:/Qt/Qt5.2.0/5.2.0/mingw48_32/lib/Qt5Core.prl:
 qmake: FORCE
